@@ -1,4 +1,5 @@
 import SearchForm from "@/components/SearchForm";
+import Animate from "@/components/Animate";
 
 export default async function Home({
 	searchParams,
@@ -17,14 +18,16 @@ export default async function Home({
 					Submit ideas, Vote on Pitches and Get Noticed in a virtual
 					competition
 				</p>
-
 				<SearchForm query={query} />
 			</section>
-
 			<section className="section_container">
-				<p className="text-30-semibold">
-					{query ? `Search results for "${query}"` : "All Startups"}
-				</p>
+				<Animate>
+					<p className="text-30-semibold">
+						{query
+							? `Search results for "${query}"`
+							: "All Startups"}
+					</p>
+				</Animate>
 
 				<ul className="mt-7 card_grid">
 					{/* {posts?.length > 0 ? (
