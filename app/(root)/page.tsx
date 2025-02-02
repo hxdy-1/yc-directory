@@ -1,6 +1,7 @@
 import SearchForm from "@/components/SearchForm";
 import Animate from "@/components/Animate";
 import StartupCard from "@/components/StartupCard";
+import DownArrow from "@/components/DownArrow";
 
 export default async function Home({
 	searchParams,
@@ -23,6 +24,45 @@ export default async function Home({
 			category: "Robots",
 			title: "We Ball",
 		},
+		{
+			_createdAt: "01-02-2025",
+			views: 22,
+			author: {
+				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
+				name: "Hady",
+			},
+			_id: 2,
+			description: "Cool description",
+			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
+			category: "Robots",
+			title: "We Ball",
+		},
+		{
+			_createdAt: "01-02-2025",
+			views: 22,
+			author: {
+				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
+				name: "Hady",
+			},
+			_id: 3,
+			description: "Cool description",
+			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
+			category: "Robots",
+			title: "We Ball",
+		},
+		{
+			_createdAt: "01-02-2025",
+			views: 22,
+			author: {
+				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
+				name: "Hady",
+			},
+			_id: 4,
+			description: "Cool description",
+			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
+			category: "Robots",
+			title: "We Ball",
+		},
 	];
 
 	return (
@@ -36,6 +76,7 @@ export default async function Home({
 					competition
 				</p>
 				<SearchForm query={query} />
+				<DownArrow />
 			</section>
 			<section className="section_container">
 				<Animate>
