@@ -1,12 +1,29 @@
 import SearchForm from "@/components/SearchForm";
 import Animate from "@/components/Animate";
+import StartupCard from "@/components/StartupCard";
 
 export default async function Home({
 	searchParams,
 }: {
-	searchParams: Promise<{ query?: string }>;
+	searchParams: Promise<{ query: string }>;
 }) {
 	const query = (await searchParams).query;
+
+	const posts = [
+		{
+			_createdAt: "01-02-2025",
+			views: 22,
+			author: {
+				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
+				name: "Hady",
+			},
+			_id: 1,
+			description: "Cool description",
+			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
+			category: "Robots",
+			title: "We Ball",
+		},
+	];
 
 	return (
 		<>
@@ -30,13 +47,13 @@ export default async function Home({
 				</Animate>
 
 				<ul className="mt-7 card_grid">
-					{/* {posts?.length > 0 ? (
-						posts.map((post: StartupTypeCard) => (
+					{posts?.length > 0 ? (
+						posts.map((post) => (
 							<StartupCard key={post?._id} post={post} />
 						))
 					) : (
 						<p className="no-results">No startups found</p>
-					)} */}
+					)}
 				</ul>
 			</section>
 		</>
