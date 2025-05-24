@@ -4,8 +4,11 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { formatDate } from "@/lib/utils";
+import { Author, Startup } from "@/sanity/types";
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
+
+const StartupCard = ({ post }: { post: StartupCardType }) => {
 	const {
 		_createdAt,
 		views,
@@ -42,8 +45,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 				</div>
 				<Link href={`/user/${author?._id}`}>
 					<Image
-						src={author.image!}
-						alt={author.name!}
+						src={author!.image!}
+						alt={author!.name!}
 						width={48}
 						height={48}
 						className="rounded-full"
@@ -55,7 +58,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 				<p className="startup-card_desc">{description}</p>
 
 				<Image
-					src={image}
+					src={image!}
 					alt="placeholder"
 					width={50}
 					height={35}

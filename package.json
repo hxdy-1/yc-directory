@@ -6,7 +6,10 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"predev": "pnpm run typegen",
+		"prebuild": "pnpm run typegen",
+		"typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
 	},
 	"dependencies": {
 		"@radix-ui/react-slot": "^1.1.1",
@@ -15,6 +18,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"easymde": "^2.20.0",
 		"framer-motion": "^12.0.6",
 		"lucide-react": "^0.474.0",
 		"motion": "^12.0.6",
@@ -25,6 +29,7 @@
 		"react-dom": "^19.0.0",
 		"sanity": "3",
 		"sanity-plugin-markdown": "^5.0.0",
+		"server-only": "^0.0.1",
 		"styled-components": "6",
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7"

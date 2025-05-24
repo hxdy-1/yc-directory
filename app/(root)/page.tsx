@@ -1,7 +1,8 @@
 import SearchForm from "@/components/SearchForm";
-import Animate from "@/components/Animate";
-import StartupCard from "@/components/StartupCard";
-import DownArrow from "@/components/DownArrow";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
+// import DownArrow from "@/components/DownArrow";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home({
 	searchParams,
@@ -9,61 +10,12 @@ export default async function Home({
 	searchParams: Promise<{ query: string }>;
 }) {
 	const query = (await searchParams).query;
-
-	const posts = [
-		{
-			_createdAt: "01-02-2025",
-			views: 22,
-			author: {
-				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
-				name: "Hady",
-			},
-			_id: 1,
-			description: "Cool description",
-			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
-			category: "Robots",
-			title: "We Ball",
-		},
-		{
-			_createdAt: "01-02-2025",
-			views: 22,
-			author: {
-				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
-				name: "Hady",
-			},
-			_id: 2,
-			description: "Cool description",
-			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
-			category: "Robots",
-			title: "We Ball",
-		},
-		{
-			_createdAt: "01-02-2025",
-			views: 22,
-			author: {
-				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
-				name: "Hady",
-			},
-			_id: 3,
-			description: "Cool description",
-			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
-			category: "Robots",
-			title: "We Ball",
-		},
-		{
-			_createdAt: "01-02-2025",
-			views: 22,
-			author: {
-				image: "https://avatars.githubusercontent.com/u/115286446?v=4",
-				name: "Hady",
-			},
-			_id: 4,
-			description: "Cool description",
-			image: "https://thumbs.dreamstime.com/b/robot-painting-landscape-futuristic-digital-art-scene-vibrant-natural-setting-sits-scenic-view-mountains-340179680.jpg",
-			category: "Robots",
-			title: "We Ball",
-		},
-	];
+	const params = { search: query || null };
+	const { data: posts } = await sanityFetch({
+		query: STARTUPS_QUERY,
+		params,
+	});
+	// console.log("posts: ", JSON.stringify(posts, null, 2));
 
 	return (
 		<>
@@ -76,20 +28,16 @@ export default async function Home({
 					competition
 				</p>
 				<SearchForm query={query} />
-				<DownArrow />
+				{/* <DownArrow /> */}
 			</section>
 			<section className="section_container">
-				<Animate>
-					<p className="text-30-semibold">
-						{query
-							? `Search results for "${query}"`
-							: "All Startups"}
-					</p>
-				</Animate>
+				<p className="text-30-semibold">
+					{query ? `Search results for "${query}"` : "All Startups"}
+				</p>
 
 				<ul className="mt-7 card_grid">
 					{posts?.length > 0 ? (
-						posts.map((post) => (
+						posts.map((post: StartupCardType) => (
 							<StartupCard key={post?._id} post={post} />
 						))
 					) : (
@@ -97,6 +45,7 @@ export default async function Home({
 					)}
 				</ul>
 			</section>
+			<SanityLive />
 		</>
 	);
 }
