@@ -85,7 +85,7 @@
 	}
 
 	.profile_card {
-		@apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
+		@apply xs:sticky xs:top-[20%] w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
 	}
 
 	.profile_title {
@@ -102,7 +102,7 @@
 	}
 
 	.view_skeleton {
-		@apply bg-zinc-400 h-10 w-24 rounded-lg fixed bottom-3 right-3;
+		@apply bg-zinc-400 h-10 w-24 rounded-lg sticky bottom-3 left-full;
 	}
 
 	/* navbar */
@@ -149,7 +149,7 @@
 	}
 
 	.startup-card_btn {
-		@apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 !important;
+		@apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 hover:text-stone-300 !important;
 	}
 
 	.startup-card_skeleton {
@@ -187,7 +187,7 @@
 
 	/* view */
 	.view-container {
-		@apply flex justify-end items-center mt-5 fixed bottom-3 right-3;
+		@apply flex justify-end items-center h-10 mt-5 sticky bottom-3 right-3;
 	}
 
 	.view-text {

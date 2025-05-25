@@ -1,10 +1,13 @@
 import { auth, signOut, signIn } from "@/auth";
+import { BadgePlus, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = async () => {
 	const session = await auth();
+	// console.log("session details: ", session);
 
 	return (
 		<header className="px-6 py-4 fixed z-10 top-0 right-0 left-0 bg-white shadow-md font-work-sans">
@@ -17,8 +20,11 @@ const Navbar = async () => {
 					{session && session?.user ? (
 						<>
 							<Link href="/startup/create">
-								<span className="max-sm:hidden">Create</span>
-								{/* <BadgePlus className="size-6 sm:hidden" /> */}
+								<span className="flex gap-1 items-center max-sm:hidden font-semibold transition hover:text-emerald-700">
+									<BadgePlus className="size-5" />
+									Create
+								</span>
+								<BadgePlus className="size-6 sm:hidden" />
 							</Link>
 							<form
 								action={async () => {
@@ -28,22 +34,23 @@ const Navbar = async () => {
 								}}
 							>
 								<button type="submit">
-									<span className="max-sm:hidden">
+									<span className="flex gap-1 mt-[0.4rem] items-center max-sm:hidden text-red-400 hover:text-red-500">
+										<LogOut className="size-5" />
 										Logout
 									</span>
-									{/* <LogOut className="size-6 sm:hidden text-red-500" /> */}
+									<LogOut className="size-6 sm:hidden text-red-400" />
 								</button>
 							</form>
-							<Link href={`/user/${session?.user?.id}`}>
-								{/* <Avatar className="size-10">
+							<Link href={`/user/${session?.id}`}>
+								<Avatar className="size-10">
 									<AvatarImage
 										src={session?.user?.image || ""}
 										alt={session?.user?.name || ""}
 									/>
-									<AvatarFallback>AV</AvatarFallback>
-								</Avatar> */}
-
-								<span>{session.user.name}</span>
+									<AvatarFallback>
+										{session?.user?.name}
+									</AvatarFallback>
+								</Avatar>
 							</Link>
 						</>
 					) : (

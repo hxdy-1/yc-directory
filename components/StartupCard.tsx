@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { Author, Startup } from "@/sanity/types";
+import { Skeleton } from "./ui/skeleton";
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
 
@@ -57,8 +58,8 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 			<Link href={`/startup/${_id}`}>
 				<p className="startup-card_desc">{description}</p>
 
-				<Image
-					src={image!}
+				<img
+					src={image}
 					alt="placeholder"
 					width={50}
 					height={35}
@@ -67,7 +68,10 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 			</Link>
 
 			<div className="flex-between gap-3 mt-5">
-				<Link href={`/?query=${category?.toLowerCase()}`}>
+				<Link
+					href={`/?query=${category?.toLowerCase()}`}
+					className="hover:bg-primary px-4 py-2 transition-colors duration-300 rounded-full"
+				>
 					<p className="text-16-medium">{category}</p>
 				</Link>
 				<Button className="startup-card_btn" asChild>
@@ -79,3 +83,13 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 };
 
 export default StartupCard;
+
+export const StartupCardSkeleton = () => (
+	<>
+		{[0, 1, 2, 3, 4].map((index: number) => (
+			<li key={cn("skeleton", index)}>
+				<Skeleton className="startup-card_skeleton" />
+			</li>
+		))}
+	</>
+);

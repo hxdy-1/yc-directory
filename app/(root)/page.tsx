@@ -1,6 +1,5 @@
 import SearchForm from "@/components/SearchForm";
 import StartupCard, { StartupCardType } from "@/components/StartupCard";
-// import DownArrow from "@/components/DownArrow";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
@@ -10,12 +9,12 @@ export default async function Home({
 	searchParams: Promise<{ query: string }>;
 }) {
 	const query = (await searchParams).query;
-	const params = { search: query || null };
+	const searchValue = query ? `${query}*` : null;
+	const params = { search: searchValue };
 	const { data: posts } = await sanityFetch({
 		query: STARTUPS_QUERY,
 		params,
 	});
-	// console.log("posts: ", JSON.stringify(posts, null, 2));
 
 	return (
 		<>
@@ -28,11 +27,12 @@ export default async function Home({
 					competition
 				</p>
 				<SearchForm query={query} />
-				{/* <DownArrow /> */}
 			</section>
 			<section className="section_container">
 				<p className="text-30-semibold">
-					{query ? `Search results for "${query}"` : "All Startups"}
+					{query
+						? `${posts?.length} Search results for "${query}"`
+						: `All Startups (${posts?.length})`}
 				</p>
 
 				<ul className="mt-7 card_grid">
