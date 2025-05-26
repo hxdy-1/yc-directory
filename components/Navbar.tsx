@@ -1,5 +1,5 @@
 import { auth, signOut, signIn } from "@/auth";
-import { BadgePlus, LogOut } from "lucide-react";
+import { BadgePlus, LogIn, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -61,7 +61,13 @@ const Navbar = async () => {
 								await signIn("github");
 							}}
 						>
-							<button type="submit">Login</button>
+							<button
+								type="submit"
+								className="flex items-center gap-1 font-semibold hover:text-emerald-700 transition duration-300"
+							>
+								<LogIn className="size-5" />
+								Login
+							</button>
 						</form>
 					)}
 				</div>

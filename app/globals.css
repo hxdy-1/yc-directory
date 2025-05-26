@@ -48,7 +48,7 @@
 	}
 
 	.pink_container {
-		@apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
+		@apply w-full shadow-inset bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
 	}
 
 	.tag {
@@ -124,7 +124,7 @@
 	}
 
 	.search-input {
-		@apply flex-1 font-bold placeholder:font-semibold placeholder:text-black-100 w-full h-auto outline-none;
+		@apply flex-1 text-lg lg:text-xl xs:text-lg font-bold placeholder:font-semibold placeholder:text-black-100 w-full h-auto outline-none;
 	}
 
 	.search-btn {
@@ -201,10 +201,10 @@
 	.pattern {
 		background-image: linear-gradient(
 			to right,
-			transparent 49.5%,
-			rgba(251, 232, 67, 0.2) 49.5%,
-			rgba(251, 232, 67, 0.6) 50.5%,
-			transparent 50.5%
+			#0000 48.5%,
+			#fbe84333 48.5%,
+			#fbe84399 51.5%,
+			#0000 51.5%
 		);
 		background-size: 5% 100%;
 		background-position: center;
